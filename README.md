@@ -16,3 +16,4 @@ Helpful links:
     - Docs: https://github.com/remix-run/react-router/blob/main/docs/getting-started/installation.md
 - Material UI tutorial: https://www.youtube.com/watch?v=Xoz31I1FuiY 45min
     - https://mui.com/material-ui/getting-started/overview/
+- ES Lint Docs: https://eslint.org/docs/latest/user-guide/configuring/
