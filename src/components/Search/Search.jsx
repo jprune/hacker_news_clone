@@ -45,7 +45,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchComp() {
   return (
-    <Search>
+    <Search className="mx-24">
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>

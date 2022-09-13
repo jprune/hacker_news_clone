@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import { store } from './app/store';
-import { App, New, Ask, Comments, Jobs, Past, Show, Submit } from './Pages/index';
+import { App, New, Ask, Comments, Jobs, Past, Show, Submit, Footer } from './Pages/index';
 import Header from './components/Header/Header';
 import './index.css';
 
@@ -26,6 +26,7 @@ root.render(
             <Route path="/show" element={<Show />} />
             <Route path="/submit" element={<Submit />} />
           </Routes>
+          <Footer />
         </Provider>
       </BrowserRouter>
     </StyledEngineProvider>

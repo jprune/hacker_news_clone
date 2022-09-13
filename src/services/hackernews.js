@@ -10,7 +10,7 @@ export const hackerNewsApi = createApi({
     }),
 
     getItemsFrontPage: builder.query({
-      query: () => 'search?tags=front_page',
+      query: () => 'search?tags=front_page&hitsPerPage=30',
     }),
 
     getUsers: builder.query({

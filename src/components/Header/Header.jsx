@@ -41,7 +41,7 @@ function Header() {
   };
 
   return (
-    <AppBar position="static" className="bg-slate-800">
+    <AppBar position="static" className="bg-slate-900">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <ApiIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -63,7 +63,9 @@ function Header() {
           >
             <img src={font} />
           </Typography>
+
           <Search />
+
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
