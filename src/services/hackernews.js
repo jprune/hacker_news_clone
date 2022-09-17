@@ -24,15 +24,20 @@ export const hackerNewsApi = createApi({
     getNewestItems: builder.query({
       query: () => 'search_by_date?tags=story&hitsPerPage=30',
     }),
+
+      getPastItems: builder.query({
+        query: () => `search_by_date?tags=story&numericFilters=created_at_i=${}`,
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 export const {
-  useGetItemsQuery,
-  useGetItemsFrontPageQuery,
-  useGetUsersQuery,
-  useSearchQuery,
-  useGetNewestItemsQuery,
+    useGetItemsQuery,
+    useGetItemsFrontPageQuery,
+    useGetUsersQuery,
+    useSearchQuery,
+    useGetNewestItemsQuery,
+    useGetPastItemsQuery,
 } = hackerNewsApi;
