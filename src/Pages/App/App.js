@@ -11,7 +11,7 @@ function App() {
   // const { data, error, isLoading } = pokemonApi.endpoints.getPokemonByName.useQuery('bulbasaur')
 
   // data.hits --> Array with object: array.author, .title, .url
-  console.log(data?.hits);
+  console.log(isFetching);
   if (isFetching) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center">
@@ -38,7 +38,7 @@ function App() {
             key={i}
             className="w-full font-bold text-slate-100"
           >
-            {i + 1}. {item.author} ({item.url})
+            {i + 1}. {item.title} ({item.url})
           </li>
           <p className="text-sm">{item.points} by {item.author} {item.created_at} | hide | {item.num_comments} comments</p>
         </div>

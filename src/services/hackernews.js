@@ -20,6 +20,10 @@ export const hackerNewsApi = createApi({
     search: builder.query({
       query: (queryText) => `search?query=${queryText}`,
     }),
+
+    getNewestItems: builder.query({
+      query: () => 'search_by_date?tags=story&hitsPerPage=30',
+    }),
   }),
 });
 
@@ -30,4 +34,5 @@ export const {
   useGetItemsFrontPageQuery,
   useGetUsersQuery,
   useSearchQuery,
+  useGetNewestItemsQuery,
 } = hackerNewsApi;

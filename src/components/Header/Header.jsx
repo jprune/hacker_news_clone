@@ -96,7 +96,7 @@ function Header() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={handleCloseNavMenu} className="hover:bg-slate-50 hover:opacity-75">
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
