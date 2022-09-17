@@ -6,6 +6,10 @@ import Jobs from './Jobs/Jobs';
 import Past from './Past/Past';
 import Show from './Show/Show';
 import Submit from './Submit/Submit';
-import Footer from '../components/Footer/Footer';
+import SourceCollection from './SourceCollection/SourceCollection';
+import ItemComment from './ItemComment/ItemComment';
 
-export { App, New, Ask, Comments, Jobs, Past, Show, Submit, Footer };
+import Footer from '../components/Footer/Footer';
+import Input from '../components/Input';
+
+export { App, New, Ask, Comments, Jobs, Past, Show, Submit, Footer, SourceCollection, ItemComment, Input };

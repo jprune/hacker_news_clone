@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import { store } from './app/store';
-import { App, New, Ask, Comments, Jobs, Past, Show, Submit, Footer } from './Pages/index';
+import { App, New, Ask, Comments, Jobs, Past, Show, Submit, Footer, SourceCollection, ItemComment } from './Pages/index';
 import Header from './components/Header/Header';
 import './index.css';
 
@@ -25,6 +25,8 @@ root.render(
             <Route path="/past" element={<Past />} />
             <Route path="/show" element={<Show />} />
             <Route path="/submit" element={<Submit />} />
+            <Route path="/from/:site" element={<SourceCollection />} />
+            <Route path="/item/:id" element={<ItemComment />} />
           </Routes>
           <Footer />
         </Provider>

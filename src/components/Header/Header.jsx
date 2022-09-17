@@ -123,7 +123,7 @@ function Header() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Link to={`/${page}`}>
+              <Link key={page} to={`/${page}`}>
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
