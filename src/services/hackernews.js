@@ -35,11 +35,11 @@ export const hackerNewsApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
 
-    useGetItemsQuery,
-    useGetItemsFrontPageQuery,
-    useGetUsersQuery,
-    useSearchQuery,
-    useGetNewestItemsQuery,
-    useGetPastItemsQuery,
+  useGetItemsQuery,
+  useGetItemsFrontPageQuery,
+  useGetUsersQuery,
+  useSearchQuery,
+  useGetNewestItemsQuery,
+  useGetPastItemsQuery,
 } = hackerNewsApi;
 
