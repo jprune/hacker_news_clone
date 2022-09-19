@@ -26,7 +26,7 @@ export const hackerNewsApi = createApi({
     }),
 
     getPastItems: builder.query({
-      query: () => `search_by_date?tags=story&numericFilters=created_at_i=${}`,
+      query: (date) => `search_by_date?tags=story&numericFilters=created_at_i=${date}`,
     }),
   }),
 });

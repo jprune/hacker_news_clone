@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useGetPastItems } from '../../services/hackernews';
 
 function Past() {
-  const { data, error, isFetching } = useGetPastItemsQuery();
+  const { data, error, isFetching } = useGetPastItems();
 
   if (isFetching) {
     return (
