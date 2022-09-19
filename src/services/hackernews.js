@@ -25,8 +25,8 @@ export const hackerNewsApi = createApi({
       query: () => 'search_by_date?tags=story&hitsPerPage=30',
     }),
 
-      getPastItems: builder.query({
-        query: () => `search_by_date?tags=story&numericFilters=created_at_i=${}`,
+    getPastItems: builder.query({
+      query: () => `search_by_date?tags=story&numericFilters=created_at_i=${}`,
     }),
   }),
 });

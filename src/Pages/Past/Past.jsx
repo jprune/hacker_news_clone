@@ -22,6 +22,12 @@ function Past() {
     );
   }
   return (
+    <div className=''>
+      <p>Stories from the previous day</p>
+      <button onClick={() => navigate()} className='mx-[20px]'>Back a week</button>
+      <button onClick={() => navigate()} className='mx-[20px]'>Back a month</button>
+      <button onClick={() => navigate()} className='mx-[20px]'>Back a year</button>
+    </div>
     <ul className="px-[190px] py-10 text-slate-300 bg-slate-800 flex justify-start flex-wrap">
       {data?.hits.map((item, i) => (
         <div className="flex flex-wrap w-full h-20
@@ -33,7 +39,7 @@ function Past() {
             key={i}
             className="w-full font-bold text-slate-100"
           >
-            {i + 1}. {item.title} ({item.url})
+            {i - 1}. {item.title} ({item.url})
           </li>
           <p className="text-sm">{item.points} by {item.author} {item.created_at} | hide | {item.num_comments} comments</p>
         </div>
