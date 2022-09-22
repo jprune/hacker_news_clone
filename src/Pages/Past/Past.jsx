@@ -1,11 +1,17 @@
 import React from 'react';
 import { Box, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useCallback, useState } from "react";
+//import { DateInput2 } from "@blueprintjs/datetime2";
 
-import { useGetPastItems } from '../../services/hackernews';
+import { useGetPastItemsQuery } from '../../services/hackernews';
 
 function Past() {
-  const { data, error, isFetching } = useGetPastItems();
+  const { data, error, isFetching } = useGetPastItemsQuery();
+  const [dateValue, setDateValue] = useState<string>(null);
+  const handleChange = useCallback(setDateValue, []);
+  const formatDate = useCallback((date: Date) => date.toLocaleString(), []);
+  const parseDate = useCallback((str: string) => new Date(str), []);
 
   if (isFetching) {
     return (
@@ -22,12 +28,16 @@ function Past() {
     );
   }
   return (
-  // <div className=''>
-  //   <p>Stories from the previous day</p>
-  //   <button onClick={() => navigate()} className='mx-[20px]'>Back a week</button>
-  //   <button onClick={() => navigate()} className='mx-[20px]'>Back a month</button>
-  //   <button onClick={() => navigate()} className='mx-[20px]'>Back a year</button>
-  // </div>
+  
+    <div>
+        <DateInput2
+            formatDate={formatDate}
+            onChange={handleChange}
+            parseDate={parseDate}
+            placeholder="M/D/YYYY"
+            value={dateValue}
+        />
+      
      <ul className="px-[190px] py-10 text-slate-300 bg-slate-800 flex justify-start flex-wrap">
       {data?.hits.map((item, i) => (
         <div className="flex flex-wrap w-full h-20
@@ -44,8 +54,26 @@ function Past() {
           <p className="text-sm">{item.points} by {item.author} {item.created_at} | hide | {item.num_comments} comments</p>
         </div>
       ))}
-    </ul>
+      </ul>
+      </div>
   );
 }
 
 export default Past;
+
+function Example() {
+    const [dateValue, setDateValue] = useState<string>(null);
+    const handleChange = useCallback(setDateValue, []);
+    const formatDate = useCallback((date: Date) => date.toLocaleString(), []);
+    const parseDate = useCallback((str: string) => new Date(str), []);
+ 
+    return (
+        <DateInput2
+            formatDate={formatDate}
+            onChange={handleChange}
+            parseDate={parseDate}
+            placeholder="M/D/YYYY"
+            value={dateValue}
+        />
+    );
+}
