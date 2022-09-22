@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { App, New, Ask, Comments, Jobs, Past, Show, Submit, Footer } from './Pages/index';
 import Header from './components/Header/Header';
+import ErrorPage from './components/Error/ErrorPage';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -25,6 +26,7 @@ root.render(
             <Route path="/past" element={<Past />} />
             <Route path="/show" element={<Show />} />
             <Route path="/submit" element={<Submit />} />
+            {/* <Route path="/error" element={<Error />} /> */}
           </Routes>
           <Footer />
         </Provider>

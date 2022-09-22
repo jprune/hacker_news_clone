@@ -1,17 +1,44 @@
 import React from 'react';
 import { Box, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { useCallback, useState } from "react";
-//import { DateInput2 } from "@blueprintjs/datetime2";
+import { Dayjs } from 'dayjs';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box'
+import { LocalizationProvider } from '@mui/x-date-pickers-pro';
+import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
+import { DateRangePicker, DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
+
 
 import { useGetPastItemsQuery } from '../../services/hackernews';
 
+export default function BasicDateRangePicker() {
+  const [value, setValue] = React.useState < DateRange < Dayjs >> ([null, null]);
+  
+  return (
+    <LocalizationProvider
+      dateAdapter={AdapterDayjs}
+      localeText={{ start: 'Check-in', end: 'Check-out' }}
+    >
+      <DateRangePicker
+        value={value}
+        onChange={(newValue) => {
+          setValue(newValue);
+        }}
+        renderInput={(startProps, endProps) => (
+          <React.Fragment>
+            <TextField {...startProps} />
+            <Box sx={{ mx: 2 }}> to </Box>
+            <TextField {...endProps} />
+          </React.Fragment>
+        )}
+      />
+    </LocalizationProvider>
+  );
+}
+
 function Past() {
   const { data, error, isFetching } = useGetPastItemsQuery();
-  const [dateValue, setDateValue] = useState<string>(null);
-  const handleChange = useCallback(setDateValue, []);
-  const formatDate = useCallback((date: Date) => date.toLocaleString(), []);
-  const parseDate = useCallback((str: string) => new Date(str), []);
+
 
   if (isFetching) {
     return (
@@ -22,22 +49,14 @@ function Past() {
   }
   if (error) {
     return (
+      //Error page HERE!!!?
       <Box display="flex" justifyContent="center" alignItems="center">
-        <Link to="/">Something has gone wrong. Go back!</Link>
+        <Link to="/src/components/Error/ErrorPage.jsx"></Link>
       </Box>
     );
   }
   return (
-  
-    <div>
-        <DateInput2
-            formatDate={formatDate}
-            onChange={handleChange}
-            parseDate={parseDate}
-            placeholder="M/D/YYYY"
-            value={dateValue}
-        />
-      
+        
      <ul className="px-[190px] py-10 text-slate-300 bg-slate-800 flex justify-start flex-wrap">
       {data?.hits.map((item, i) => (
         <div className="flex flex-wrap w-full h-20
@@ -55,25 +74,5 @@ function Past() {
         </div>
       ))}
       </ul>
-      </div>
   );
-}
-
-export default Past;
-
-function Example() {
-    const [dateValue, setDateValue] = useState<string>(null);
-    const handleChange = useCallback(setDateValue, []);
-    const formatDate = useCallback((date: Date) => date.toLocaleString(), []);
-    const parseDate = useCallback((str: string) => new Date(str), []);
- 
-    return (
-        <DateInput2
-            formatDate={formatDate}
-            onChange={handleChange}
-            parseDate={parseDate}
-            placeholder="M/D/YYYY"
-            value={dateValue}
-        />
-    );
 }

@@ -1,17 +1,14 @@
-export default function ErrorPage({ data }) {
-    return (
-        <body>
-        
-            <header className="header">
-                <nav className="nav container">
-                    <a href="#" className="nav__logo">
-                        HACKERNEWS
-                    </a>
+import image from "/public/ghost-img.png";
+
+export default function ErrorPage() {
+  return (
+  <React.Framework>
+           <header className="header">
+                <nav className="nav container" >
+                    <h1 className="nav__logo">HACKERNEWS</h1>
                 </nav>
             </header>
-
             <main className="main">
-            
                 <section className="home">
                     <div className="home__container container">
                         <div className="home__data">
@@ -20,18 +17,17 @@ export default function ErrorPage({ data }) {
                             <p className="home__description">
                                 We can't seem to find the page <br> you are looking for.</br>
                             </p>
-                            <a href="#" className="home__button">
+                            <Link to="" className="home__button">
                                 Head Home
-                            </a>
+                            </Link>
                         </div>
-                    
                         <div className="home__img">
-                            <img src="./images/ghost-img.png" alt="Ghost pic"></img>
+                          <img src={image} alt="Ghost error pic" />
                             <div class="home__shadow"></div>
                         </div>
                     </div>
                 </section>
             </main>
-        </body>
+        </React.Framework>
     )
 }
