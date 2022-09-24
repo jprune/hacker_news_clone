@@ -26,7 +26,7 @@ root.render(
             <Route path="/past" element={<Past />} />
             <Route path="/show" element={<Show />} />
             <Route path="/submit" element={<Submit />} />
-            {/* <Route path="/error" element={<Error />} /> */}
+            <Route path="/error" element={<ErrorPage />} />
           </Routes>
           <Footer />
         </Provider>

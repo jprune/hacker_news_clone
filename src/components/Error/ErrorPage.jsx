@@ -1,4 +1,5 @@
 import image from "/public/ghost-img.png";
+import styles from "./styles.css";
 
 export default function ErrorPage() {
   return (

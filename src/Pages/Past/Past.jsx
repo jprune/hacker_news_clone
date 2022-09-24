@@ -3,42 +3,18 @@ import { Box, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Dayjs } from 'dayjs';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box'
-import { LocalizationProvider } from '@mui/x-date-pickers-pro';
-import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
-import { DateRangePicker, DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateRangePicker, DateRange } from '@mui/x-date-pickers/DateRangePicker';
 
 
 import { useGetPastItemsQuery } from '../../services/hackernews';
 
-export default function BasicDateRangePicker() {
-  const [value, setValue] = React.useState < DateRange < Dayjs >> ([null, null]);
-  
-  return (
-    <LocalizationProvider
-      dateAdapter={AdapterDayjs}
-      localeText={{ start: 'Check-in', end: 'Check-out' }}
-    >
-      <DateRangePicker
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
-        renderInput={(startProps, endProps) => (
-          <React.Fragment>
-            <TextField {...startProps} />
-            <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} />
-          </React.Fragment>
-        )}
-      />
-    </LocalizationProvider>
-  );
-}
 
 function Past() {
-  const { data, error, isFetching } = useGetPastItemsQuery();
+  const { data, error, isFetching } = useGetPastItemsQuery(value);
 
+  const [value, setValue] = React.useState < DateRange < Dayjs >> ([null, null]);
 
   if (isFetching) {
     return (
@@ -56,7 +32,26 @@ function Past() {
     );
   }
   return (
-        
+    <>
+      <LocalizationProvider
+      dateAdapter={AdapterDayjs}
+      localeText={{ start: 'Check-in', end: 'Check-out' }}
+    >
+      <DateRangePicker
+        value={value}
+        onChange={(newValue) => {
+          setValue(newValue);
+        }}
+        renderInput={(startProps, endProps) => (
+          <React.Fragment>
+            <TextField {...startProps} />
+            <Box sx={{ mx: 2 }}> to </Box>
+            <TextField {...endProps} />
+          </React.Fragment>
+        )}
+      />
+      </LocalizationProvider>
+
      <ul className="px-[190px] py-10 text-slate-300 bg-slate-800 flex justify-start flex-wrap">
       {data?.hits.map((item, i) => (
         <div className="flex flex-wrap w-full h-20
@@ -74,5 +69,6 @@ function Past() {
         </div>
       ))}
       </ul>
+      </>
   );
 }
