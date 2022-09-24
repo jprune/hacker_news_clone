@@ -11,7 +11,7 @@ import { DateRangePicker, DateRange } from '@mui/x-date-pickers/DateRangePicker'
 import { useGetPastItemsQuery } from '../../services/hackernews';
 
 
-function Past() {
+export default function Past() {
   const { data, error, isFetching } = useGetPastItemsQuery(value);
 
   const [value, setValue] = React.useState < DateRange < Dayjs >> ([null, null]);
