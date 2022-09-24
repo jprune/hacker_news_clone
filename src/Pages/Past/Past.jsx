@@ -1,11 +1,12 @@
-import React from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { Box, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Dayjs } from 'dayjs';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateRangePicker, DateRange } from '@mui/x-date-pickers/DateRangePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
 import { useGetPastItemsQuery } from '../../services/hackernews';
@@ -14,9 +15,11 @@ import { useGetPastItemsQuery } from '../../services/hackernews';
 export default function Past() {
   const { data, error, isFetching } = useGetPastItemsQuery(value);
 
-  const [value, setValue] = React.useState < DateRange < Dayjs >> ([null, null]);
+  const [value, setValue] = React.useState < Dayjs | null > (null);
+  
+  useEffect(() => {
 
-  if (isFetching) {
+    if (isFetching) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center">
         <CircularProgress className="text-slate-700 mt-24" size="8rem" />
@@ -31,26 +34,22 @@ export default function Past() {
       </Box>
     );
   }
+
+    useGetPastItemsQuery();
+  }, [value]);
+
   return (
     <>
-      <LocalizationProvider
-      dateAdapter={AdapterDayjs}
-      localeText={{ start: 'Check-in', end: 'Check-out' }}
-    >
-      <DateRangePicker
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DatePicker
+        label="Choose your date"
         value={value}
         onChange={(newValue) => {
           setValue(newValue);
         }}
-        renderInput={(startProps, endProps) => (
-          <React.Fragment>
-            <TextField {...startProps} />
-            <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} />
-          </React.Fragment>
-        )}
+        renderInput={(params) => <TextField {...params} />}
       />
-      </LocalizationProvider>
+    </LocalizationProvider>
 
      <ul className="px-[190px] py-10 text-slate-300 bg-slate-800 flex justify-start flex-wrap">
       {data?.hits.map((item, i) => (
@@ -69,6 +68,6 @@ export default function Past() {
         </div>
       ))}
       </ul>
-      </>
-  );
+  </>
+  )
 }

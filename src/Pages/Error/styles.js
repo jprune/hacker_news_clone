@@ -1,6 +1,8 @@
 
+export default function ErrorStyling () {
 
-:root {
+return (
+    :root {
     --header-height: 3.5rem;
 
     /*========== Colors ==========*/
@@ -324,3 +326,4 @@ img {
         zoom: 3.1;
     }
 }
+)};

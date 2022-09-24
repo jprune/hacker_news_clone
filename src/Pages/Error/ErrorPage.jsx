@@ -1,9 +1,10 @@
-import image from "/public/ghost-img.png";
-import styles from "./styles.css";
+import { Link } from 'react-router-dom';
+import image from '';
+import errorStyling from './styles.js';
 
 export default function ErrorPage() {
   return (
-  <React.Framework>
+  <>
            <header className="header">
                 <nav className="nav container" >
                     <h1 className="nav__logo">HACKERNEWS</h1>
@@ -18,8 +19,8 @@ export default function ErrorPage() {
                             <p className="home__description">
                                 We can't seem to find the page <br> you are looking for.</br>
                             </p>
-                            <Link to="" className="home__button">
-                                Head Home
+                            <Link to="/" className="home__button">
+                                Back to safety
                             </Link>
                         </div>
                         <div className="home__img">
@@ -29,6 +30,6 @@ export default function ErrorPage() {
                     </div>
                 </section>
             </main>
-        </React.Framework>
+        </>
     )
 }
