@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
@@ -43,7 +44,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchComp() {
+export default function SearchComp({ searchInput, setSearchInput }) {
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    if (e.charCode === 13) {
+      navigate(`/searchResult/${searchInput}`);
+    }
+  };
+
   return (
     <Search className="mx-24">
       <SearchIconWrapper>
@@ -52,6 +64,8 @@ export default function SearchComp() {
       <StyledInputBase
         placeholder="Search…"
         inputProps={{ 'aria-label': 'search' }}
+        onChange={handleChange}
+        onKeyPress={handleSubmit}
       />
     </Search>
   );

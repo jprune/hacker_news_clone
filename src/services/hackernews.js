@@ -17,8 +17,8 @@ export const hackerNewsApi = createApi({
       query: (username) => `users/${username}`,
     }),
 
-    search: builder.query({
-      query: (queryText) => `search?query=${queryText}`,
+    getSearch: builder.query({
+      query: (queryText) => `search_by_date?query=${queryText}&tags=story&hitsPerPage=30`,
     }),
 
     getNewestItems: builder.query({
@@ -41,7 +41,7 @@ export const {
   useGetItemsQuery,
   useGetItemsFrontPageQuery,
   useGetUsersQuery,
-  useSearchQuery,
+  useGetSearchQuery,
   useGetNewestItemsQuery,
   useGetCommentsOfStoryQuery,
   useGetNewCommentsQuery,
